@@ -1,0 +1,73 @@
+<% if(locals.lastVisit){ %>
+    
+<div class="alert alert-primary" role="alert">
+    Your last visit was on: <%= locals.lastVisit %>
+</div>
+<% } %>
+
+
+<h1>Products</h1><br>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        <!-- <% %>   this is ejs syntax; every thing should be inside <% %>  -->
+
+        <% products.forEach(product => { %>
+            <tr>
+                <!-- <th>1</th> -->
+                <th> <%= product.id %></th> <!--ejs syntax-->
+
+                <!-- <td>Atomic Habits</td> -->
+                <td> <%= product.name %></td>
+
+                <!-- <td>A supremely practical and useful book. </td> -->
+                <td> <%= product.desc %> </td>
+
+                <!-- <td scope="col">300</td> -->
+                <td scope="col"><%= product.price %></td>
+
+                <td>
+                    <!-- <img src="https://m.media-amazon.com/images/I/51-nXsSRfZL._SX328_BO1,204,203,200_.jpg" /> -->
+                    <img src="<%= product.imageUrl %>">
+                </td>
+                <td>
+                    <a href="/update-product/<%= product.id %>" class="btn btn-warning">Update</a>
+                    <button class="btn btn-danger" onclick="deleteProduct('<%= product.id %>')">Delete</button>
+                    <!-- <a href="/delete-product/<%= product.id %>" class="btn btn-danger">Delete</a> -->
+                </td>
+            </tr>
+        <% }) %>
+
+        <!--commening this part so that data can be brought dynamically / use ejs syntax for this example -->
+        <!-- <tr>
+            <th>2</th>
+            <td>Ikigai</td>
+            <td>The Japanese secret to a long and happy life</td>
+            <td scope="col">340</td>
+            <td>
+                <img src="https://m.media-amazon.com/images/I/51xwGSNX-EL._SX356_BO1,204,203,200_.jpg" />
+            </td>
+        </tr>
+        <tr>
+            <th>3</th>
+            <td>Deep Work</td>
+            <td>RULES FOR FOCUSED SUCCESS IN A DISTRACTED WORLD</td>
+            <td scope="col">280</td>
+            <td>
+                <img src="https://m.media-amazon.com/images/I/31PBdo581fL._SX317_BO1,204,203,200_.jpg" />
+            </td>
+        </tr> -->
+    </tbody>
+</table>
